@@ -60,7 +60,8 @@ module Fyodor
       when Entry::TYPE[:bookmark]
         "*** #{page(entry)}"
       when Entry::TYPE[:note]
-        "*** _Note:_\n#{entry.text.strip}"
+        # @todo2 add the context of the note if possible
+        "*** @knote #{page(entry)}\n\#+begin_quote\n#{entry.text.strip}\n\#+end_quote"
       else
         "*** #{entry.text.strip}"
       end
