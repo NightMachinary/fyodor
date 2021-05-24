@@ -26,7 +26,7 @@ module Fyodor
     end
 
     def basename
-      base = @author.to_s.empty? ? @title : "#{@author} - #{@title}"
+      base = @author.to_s.empty? ? @title : "#{@title} - #{@author}"
       base.strip.gsub(/[?*:|\/"<>]/,"_")
     end
 

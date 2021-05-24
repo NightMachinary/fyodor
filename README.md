@@ -30,6 +30,13 @@ Install Ruby and run:
 $ gem install fyodor
 ```
 
+### Installing locally
+
+``` sh
+gem build
+gem install *.gem
+```
+
 ## Updating
 
 Run:

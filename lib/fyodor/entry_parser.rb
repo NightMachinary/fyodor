@@ -27,13 +27,20 @@ module Fyodor
     private
 
     def book
-      regex = /^(.*) \((.*)\)\r?\n$/
+      # example: Managed Competition or Competing Managers? | Overcoming Bias : Managed Competition or Competing Managers? ([6 minutes (1151 words)] by D Zweig · 2013 · Cited by 125)
+      regex = /^(.*) \((\[.*)\)\r?\n$/ # @todo3 use  a grammar to parse this correctly
 
       title, author = @lines[0].scan(regex).first
-      # If book has no author, regex fails.
-      if title.nil?
-        title = @lines[0]
-        author = ""
+
+      if title.nil? # failed regex
+        regex = /^(.*) \((.*)\)\r?\n$/
+
+        title, author = @lines[0].scan(regex).first
+
+        if title.nil? # failed regex
+          title = @lines[0]
+          author = ""
+        end
       end
 
       title = rm_zero_width_chars(title).strip
